@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Biểu đồ Test Case</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gradient-to-br from-slate-100 to-white min-h-screen flex flex-col items-center justify-center p-6">
+
+  <h1 class="text-3xl font-bold text-indigo-600 mb-6">📊 Biểu đồ tiến độ kiểm thử</h1>
+
+  <div class="bg-white shadow-xl rounded-xl p-6 w-full max-w-lg">
+    <canvas id="testCaseChart" width="400" height="400"></canvas>
+  </div>
+
+  <a href="index.html"
+     class="mt-8 inline-block text-indigo-600 hover:text-indigo-800 transition underline font-medium">
+     ← Quay lại báo cáo
+  </a>
+
+  <script>
+    const counts = JSON.parse(localStorage.getItem('testCaseStats')) || {
+      chuaXong: 0,
+      chuaCoManHinh: 0,
+      dangTienHanh: 0,
+      chuaReview: 0,
+      daHoanThanh: 0
+    };
+
+    const ctx = document.getElementById('testCaseChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Chưa xong', 'Chưa có màn hình', 'Đang thực hiện', 'Chưa review', 'Đã hoàn thành'],
+        datasets: [{
+          data: [
+            counts.chuaXong,
+            counts.chuaCoManHinh,
+            counts.dangTienHanh,
+            counts.chuaReview,
+            counts.daHoanThanh
+          ],
+          backgroundColor: ['#f87171', '#9ca3af', '#facc15', '#60a5fa', '#4ade80']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' },
+          title: { display: true, text: 'Tổng quan tiến độ test case' }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

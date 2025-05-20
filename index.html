@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Báo cáo Tiến độ Test Case</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-50 to-white min-h-screen font-sans text-gray-800">
+  <header class="bg-indigo-600 text-white py-5 shadow-md">
+    <h1 class="text-3xl font-bold text-center">📋 Báo cáo tiến độ Test Case</h1>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-10">
+    <a href="chart.html"
+       class="block w-fit mx-auto mb-10 text-white bg-indigo-600 hover:bg-indigo-700 transition px-6 py-3 rounded-full shadow-md font-medium">
+       📊 Xem biểu đồ tiến độ
+    </a>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Chưa có màn hình -->
+      <div class="bg-white shadow-md rounded-lg p-6 border-t-4 border-gray-400">
+        <h2 class="text-xl font-bold text-gray-600 mb-2">📄 Chưa có màn hình</h2>
+        <ul class="status-chua-man-hinh list-disc list-inside text-gray-800 space-y-1">
+          <li>Test case 3</li>
+          <li>Test case 4</li>
+        </ul>
+      </div>
+
+      <!-- Chưa xong -->
+      <div class="bg-white shadow-md rounded-lg p-6 border-t-4 border-red-400">
+        <h2 class="text-xl font-bold text-red-600 mb-2">❌ Chưa xong</h2>
+        <ul class="status-chua-xong list-disc list-inside text-red-800 space-y-1">
+          <li>Test case 1</li>
+          <li>Test case 2</li>
+        </ul>
+      </div>
+
+      <!-- Đang thực hiện -->
+      <div class="bg-white shadow-md rounded-lg p-6 border-t-4 border-yellow-300">
+        <h2 class="text-xl font-bold text-yellow-600 mb-2">🔧 Đang thực hiện</h2>
+        <ul class="status-dang-thuc-hien list-disc list-inside text-yellow-900 space-y-1">
+          <li>Test case 5</li>
+          <li>Test case 6</li>
+        </ul>
+      </div>
+
+      <!-- Chưa review -->
+      <div class="bg-white shadow-md rounded-lg p-6 border-t-4 border-blue-400">
+        <h2 class="text-xl font-bold text-blue-600 mb-2">🕵️‍♂️ Chưa được review</h2>
+        <ul class="status-chua-review list-disc list-inside text-blue-900 space-y-1">
+          <li>Test case 7</li>
+          <li>Test case 8</li>
+        </ul>
+      </div>
+
+      <!-- Đã hoàn thành -->
+      <div class="bg-white shadow-md rounded-lg p-6 border-t-4 border-green-400">
+        <h2 class="text-xl font-bold text-green-600 mb-2">✅ Đã hoàn thành</h2>
+        <ul class="status-da-hoan-thanh list-disc list-inside text-green-900 space-y-1">
+          <li>Test case 9</li>
+          <li>Test case 10</li>
+          <li>Test case 11</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function countTestCases() {
+      const counts = {
+        chuaXong: document.querySelectorAll('.status-chua-xong li').length,
+        chuaCoManHinh: document.querySelectorAll('.status-chua-man-hinh li').length,
+        dangTienHanh: document.querySelectorAll('.status-dang-thuc-hien li').length,
+        chuaReview: document.querySelectorAll('.status-chua-review li').length,
+        daHoanThanh: document.querySelectorAll('.status-da-hoan-thanh li').length
+      };
+      localStorage.setItem('testCaseStats', JSON.stringify(counts));
+    }
+
+    window.addEventListener('DOMContentLoaded', countTestCases);
+  </script>
+</body>
+</html>
